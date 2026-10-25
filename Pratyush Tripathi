@@ -1,0 +1,244 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyO4l26cu1ScrLqsJM39/7T5",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pratyushtripathi0608-lab/GR-AIML-2026-27/blob/main/Pratyush%20Tripathi\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "LIcWZM9-AuH-"
+      },
+      "outputs": [],
+      "source": [
+        "import numpy as np\n",
+        "house_sizes = np.array([500,800,600,1500,1200,2000,2500,3000,1400,2200])\n",
+        "house_prices = np.array([20,30,24,60,50,85,95,105,120,57,100])"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(house_prices)\n",
+        "print(house_sizes)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZDwHHPS7F8nS",
+        "outputId": "fa095ca2-9097-4c6a-e4ed-1a85e729f043"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[ 20  30  24  60  50  85  95 105 120  57 100]\n",
+            "[ 500  800  600 1500 1200 2000 2500 3000 1400 2200]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"mean of the given data is:\")\n",
+        "m1 = np.mean(house_prices)\n",
+        "print(m1)\n",
+        "m2 = np.mean(house_sizes)\n",
+        "print(m2)\n",
+        "print(\"minimum and maximum values of house prices respectively are\")\n",
+        "print(np.min(house_prices))\n",
+        "print(np.max(house_prices))\n",
+        "print(\"minimum and maximum values of house sizes respectively are\")\n",
+        "print(np.min(house_sizes))\n",
+        "print(np.max(house_sizes))\n",
+        "print(\"median of house prices and house sizes respectively are\")\n",
+        "print(np.median(house_prices))\n",
+        "print(np.median(house_sizes))\n",
+        "print(\"standard deviation of house prices and house sizes respectively are\")\n",
+        "print(np.std(house_prices))\n",
+        "print(np.std(house_sizes))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VrKC93bFGUJO",
+        "outputId": "6629f3bd-f89f-4cae-bfaf-84532bde8b93"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "mean of the given data is:\n",
+            "67.81818181818181\n",
+            "1570.0\n",
+            "minimum and maximum values of house prices respectively are\n",
+            "20\n",
+            "120\n",
+            "minimum and maximum values of house sizes respectively are\n",
+            "500\n",
+            "3000\n",
+            "median of house prices and house sizes respectively are\n",
+            "60.0\n",
+            "1450.0\n",
+            "standard deviation of house prices and house sizes respectively are\n",
+            "33.44960437819634\n",
+            "796.3039620647382\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "x_train =  house_sizes[:8]\n",
+        "y_train =  house_prices[:8]\n",
+        "print(x_train)\n",
+        "print(y_train)\n",
+        "x_trainr  = x_train.reshape(-1,1)\n",
+        "print(x_trainr)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VPaCpzfcxQHV",
+        "outputId": "e826fa93-ab59-4d6f-acff-280c76a1f11c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[ 500  800  600 1500 1200 2000 2500 3000]\n",
+            "[ 20  30  24  60  50  85  95 105]\n",
+            "[[ 500]\n",
+            " [ 800]\n",
+            " [ 600]\n",
+            " [1500]\n",
+            " [1200]\n",
+            " [2000]\n",
+            " [2500]\n",
+            " [3000]]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from sklearn.linear_model import LinearRegression\n",
+        "model = LinearRegression()\n",
+        "model.fit(x_trainr, y_train)\n",
+        "'''print(model.intercept_)\n",
+        "m1 = model.coef_\n",
+        "print(m1)'''\n",
+        "\n",
+        "slope = model.coef_[0]\n",
+        "intercept = model.intercept_\n",
+        "print(slope)\n",
+        "print(intercept)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "TQf83bP_Tcbv",
+        "outputId": "ba3ef95f-eecd-40f4-c749-962c5d9216ce"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0.035922309488431343\n",
+            "4.29250689874759\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "x = input(\"enter the house size: \")\n",
+        "x = float(x)\n",
+        "y = slope*x + intercept\n",
+        "print(y,\"lacs\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "u9XHPAopehln",
+        "outputId": "6413f908-2112-4eca-d167-dc02cd643053"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "enter the house size: 6000\n",
+            "219.82636382933566 lacs\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "[link text](https://)"
+      ],
+      "metadata": {
+        "id": "rpMpxxDEGOC1"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "rX38tfkPF4z1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "d73QQa0JhL0k"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
